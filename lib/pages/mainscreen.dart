@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:free_zone/config_editor.dart' as config_editor;
-import 'package:free_zone/vpnscreen.dart' as vpnscreen;
+import 'package:free_zone/widgets/config_editor.dart' as config_editor;
+import 'package:free_zone/pages/vpnscreen.dart' as vpnscreen;
 
 class main_screen extends StatefulWidget {
   @override
