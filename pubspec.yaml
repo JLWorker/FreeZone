@@ -61,10 +61,6 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-  assets:
-    - assets/icons/globe-earth.png
-    - assets/icons/add.png
-    - assets/icons/edit.png
 
   # To add assets to your application, add an assets section, like this:
   assets:
@@ -72,6 +68,9 @@ flutter:
     - assets/icons/change_icon_theme.png
     - assets/icons/lock.png
     - assets/icons/unlock.png
+    - assets/icons/globe-earth.png
+    - assets/icons/add.png
+    - assets/icons/edit.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

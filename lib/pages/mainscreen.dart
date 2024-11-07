@@ -22,9 +22,9 @@ class _MainScreenState extends State<Mainscreen> {
   }
 
   final List<Widget> _screens = [
+    vpnscreen.VpnScreen(),
+    config_editor.ConfigEditorScreen(),
   ];
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,38 +35,18 @@ class _MainScreenState extends State<Mainscreen> {
       ),
       body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.vpn_lock),
-            label: 'VPN',
-          ),
+              icon: FooterImage('assets/icons/globe-earth.png'), label: ""),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Config',
-          ),
+              icon: FooterImage('assets/icons/add.png'), label: ""),
+          BottomNavigationBarItem(
+              icon: FooterImage('assets/icons/edit.png'), label: ""),
         ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        backgroundColor: AppStyle.footer.color,
       ),
-    body: _screens[_selectedIndex],
-    bottomNavigationBar: BottomNavigationBar(items: <BottomNavigationBarItem>[
-      BottomNavigationBarItem(
-        icon: FooterImage('assets/icons/globe-earth.png'),
-        label: ""
-      ),
-      BottomNavigationBarItem(
-        icon: FooterImage('assets/icons/add.png'),
-        label: ""
-      ),
-      BottomNavigationBarItem(
-        icon: FooterImage('assets/icons/edit.png'),
-        label: ""
-      ),
-    ],
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      backgroundColor: AppStyle.footer.color,
-    ),
     );
   }
 }
