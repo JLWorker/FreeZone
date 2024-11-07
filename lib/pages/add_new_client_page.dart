@@ -9,8 +9,8 @@ import 'package:free_zone/models/configs/WireguardVpnConfig.dart';
 import 'package:free_zone/models/vpn_config.dart';
 import 'package:free_zone/service/ConfigFileStorageService.dart';
 import 'package:free_zone/themes/app-style.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:wireguard_flutter/wireguard_flutter.dart';
+import 'package:free_zone/widgets/ConnectionWidget.dart';
 
 class AddNewClientPage extends StatefulWidget {
   @override
@@ -66,12 +66,12 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
         String? configName = _configNameController.text;
 
         if (configName != null && !configName.isEmpty) {
+          ConfigFileStorageService.saveConfigToStorage(vpnConfig, configName!);
+
           // Сообщение об успешном сохранении
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('VPN config saved: ' + vpnConfig)),
           );
-
-          ConfigFileStorageService.saveConfigToStorage(vpnConfig, configName!);
         }
 
 

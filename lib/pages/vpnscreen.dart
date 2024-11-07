@@ -73,6 +73,12 @@ class _VpnScreenState extends State<VpnScreen> {
     } else {
       await wireguard.stopVpn();
     }
+
+    /*
+    showDialog(context: context, builder: (BuildContext context) {
+      return ConnectionWidget();
+    });
+     */
   }
 
   @override

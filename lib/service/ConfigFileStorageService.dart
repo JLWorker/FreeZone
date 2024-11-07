@@ -1,6 +1,7 @@
 import 'dart:io';
+import 'package:path/path.dart' as path;
 
-import 'package:path_provider/path_provider.dart';
+import 'package:free_zone/models/VpnConfigFile.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class ConfigFileStorageService {
@@ -24,23 +25,26 @@ class ConfigFileStorageService {
     }
   }
 
-  static Future<List<String>> getConfigsFromStorage() async {
+  static Future<List<VpnConfigFile>> getConfigsFromStorage() async {
     // Получаем папку с конфигами
     Directory freeZoneDir = await getOrCreateConfigDirectory();
 
     // Получаем список файлов в директории
     List<FileSystemEntity> files = freeZoneDir.listSync();
     List<String> contentsList = [];
+    List<VpnConfigFile> configFiles = [];
 
     // Читаем содержимое каждого файла
     for (var file in files) {
+      String fileName = path.basename(file.path);
       if (file is File) {
         String contents = await file.readAsString();
         contentsList.add(contents);
+        configFiles.add(VpnConfigFile(fileName: fileName, content: contents));
       }
     }
 
-    return contentsList;
+    return configFiles;
   }
 
   static Future<Directory> getOrCreateConfigDirectory() async {
