@@ -16,6 +16,9 @@ class Mainscreen extends StatefulWidget {
 class _MainScreenState extends State<Mainscreen> {
   int _selectedIndex = 0;
 
+  // Переменная, которую нужно передать
+  String _current_filePath = "/storage/emulated/0/Download/java_error_in_idea_37395.log";
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -33,7 +36,7 @@ class _MainScreenState extends State<Mainscreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: AppStyle.MainColor,
+          backgroundColor: AppStyle.colorPalette["base"],
           title: const Header(),
         ),
         body: _screens[_selectedIndex],
@@ -48,7 +51,7 @@ class _MainScreenState extends State<Mainscreen> {
           ],
           showSelectedLabels: false,
           showUnselectedLabels: false,
-          backgroundColor: AppStyle.footer.color,
+          backgroundColor: AppStyle.colorPalette["whiter"],
           currentIndex: _selectedIndex,  // Устанавливаем текущий индекс
           onTap: _onItemTapped,
         )

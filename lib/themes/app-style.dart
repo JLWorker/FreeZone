@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppStyle{
-  static const TextStyle footer = TextStyle(
-    color: Color(0xFFE3E3E3),
-  );
-  static const Color MainColor = Color(0xF0F04532);
+  static const Map<String, Color> colorPalette = {
+    "base": Color(0xFFF04532),
+    "editor_background": Color(0xFF0D1117),
+    "editor_text_color": Color(0xFF31C530),
+    "white": Color(0xFFE3E3E3)
+  };
 }
