@@ -49,17 +49,17 @@ class _VpnScreenState extends State<VpnScreen> {
     await wireguard.initialize(interfaceName: 'wg0');
 
     const String conf = '''[Interface]
-    PrivateKey = eDIQ44DEmrXeGRJTFNpRcoqEmaQ8BTp4uNUobhcwwnI=
-    Address = 10.8.0.2/24
-    DNS = 1.1.1.1
-    
-    [Peer]
-    PublicKey = akB9R4mC96k1/L/WJhhW9DekqAIMdsz6H67U0wVpkiU=
-    PresharedKey = 6V5FL7NgTufJOwwqQmB6G8C4FKqTjbLaTa1WEeANUT4=
-    AllowedIPs = 0.0.0.0/0, ::/0
-    PersistentKeepalive = 0
-    Endpoint = 176.124.201.152:51820
-''';
+      PrivateKey = eDIQ44DEmrXeGRJTFNpRcoqEmaQ8BTp4uNUobhcwwnI=
+      Address = 10.8.0.2/24
+      DNS = 1.1.1.1
+      
+      [Peer]
+      PublicKey = akB9R4mC96k1/L/WJhhW9DekqAIMdsz6H67U0wVpkiU=
+      PresharedKey = 6V5FL7NgTufJOwwqQmB6G8C4FKqTjbLaTa1WEeANUT4=
+      AllowedIPs = 0.0.0.0/0, ::/0
+      PersistentKeepalive = 0
+      Endpoint = 176.124.201.152:51820
+  ''';
 
     const String address = '176.124.201.152:51821';
 

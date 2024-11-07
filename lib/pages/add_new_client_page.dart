@@ -1,8 +1,15 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:free_zone/constants/AppConstants.dart';
+import 'package:free_zone/constants/vpn_protocols_constants.dart';
+import 'package:free_zone/models/configs/WireguardVpnConfig.dart';
+import 'package:free_zone/models/vpn_config.dart';
+import 'package:free_zone/service/ConfigFileStorageService.dart';
 import 'package:free_zone/themes/app-style.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:wireguard_flutter/wireguard_flutter.dart';
 
 class AddNewClientPage extends StatefulWidget {
@@ -13,11 +20,14 @@ class AddNewClientPage extends StatefulWidget {
 class _AddNewClientPageState extends State<AddNewClientPage> {
   final _formKey = GlobalKey<FormState>();
   String? _selectedItem; // Переменная для хранения выбранного элемента
-  final List<String> _vpnProtocols = ['WireGuard', 'IKEV2'];
+  final List<String> _vpnProtocols = [
+    VpnProtocolsConstants.WIREGUARD_VPN_PROTOCOL_NAME,
+    VpnProtocolsConstants.IKEV2_VPN_PROTOCOL_NAME];
   final TextEditingController _nameController = TextEditingController();
   String? _filePath; // Переменная для хранения пути к выбранному файлу
 
   final TextEditingController _urlController = TextEditingController();
+  final TextEditingController _configNameController = TextEditingController();
   String? _serverUrl;
 
   void _saveData() async {
@@ -27,30 +37,43 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
 
       if (_selectedItem != null) {
 
-        await _showFilePath();
+        String vpnConfig = "";
 
-        // Вывод данных в консоль (или можно сохранить в базе данных)
-        print('Type: $_selectedItem');
+        if (_selectedItem == VpnProtocolsConstants.WIREGUARD_VPN_PROTOCOL_NAME) {
+          await _showFilePath();
 
-        _serverUrl = _urlController.text; // Сохраняем URL в переменной
+          // Вывод данных в консоль (или можно сохранить в базе данных)
+          print('Type: $_selectedItem');
 
-        final wireguard = WireGuardFlutter.instance;
+          _serverUrl = _urlController.text; // Сохраняем URL в переменной
 
-        // Инициализируем интерфейс
-        await wireguard.initialize(interfaceName: 'wg0');
+          final wireguard = WireGuardFlutter.instance;
 
-        String fileContents = await readFile(_filePath!);
+          // Инициализируем интерфейс
+          await wireguard.initialize(interfaceName: 'wg0');
 
-        await wireguard.startVpn(
-          serverAddress: _serverUrl!,
-          wgQuickConfig: fileContents,
-          providerBundleIdentifier: 'com.freezone.vpn',
-        );
+          String fileContents = await readFile(_filePath!);
 
-        // Сообщение об успешном сохранении
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('VPN is ON!')),
-        );
+          VpnConfig vpnConfigObj = VpnConfig(protocolName: VpnProtocolsConstants.WIREGUARD_VPN_PROTOCOL_NAME,
+              config: jsonEncode(WireguardVpnConfig(serverAddress: _serverUrl!, configContent: fileContents, appName: AppConstants.APP_DOMAIN_NAME)));
+
+          vpnConfig = jsonEncode(vpnConfigObj);
+
+        } else if (_selectedItem == VpnProtocolsConstants.IKEV2_VPN_PROTOCOL_NAME) {
+          throw UnimplementedError();
+        }
+
+        String? configName = _configNameController.text;
+
+        if (configName != null && !configName.isEmpty) {
+          // Сообщение об успешном сохранении
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('VPN config saved: ' + vpnConfig)),
+          );
+
+          ConfigFileStorageService.saveConfigToStorage(vpnConfig, configName!);
+        }
+
 
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -59,6 +82,7 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
       }
     }
   }
+
 
   Future<void> _pickFile() async {
     // Открытие диалогового окна выбора файла
@@ -191,6 +215,31 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
                   decoration: InputDecoration(
                     border: InputBorder.none, // Убираем стандартную рамку
                     hintText: 'https://example.com',
+                    hintStyle: TextStyle(color: Colors.black), // Цвет подсказки
+                    contentPadding: EdgeInsets.all(10), // Отступы внутри текстового поля
+                  ),
+                  style: TextStyle(color: Colors.black), // Черный текст
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerLeft, // Выровнять текст по левому краю
+                child: Text(
+                  'Config name:',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+              ),
+              SizedBox(height: 8.0), // Отступ между лейблом и текстовым полем
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white, // Белый фон
+                  border: Border.all(color: Colors.black), // Черная рамка
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: TextField(
+                  controller: _configNameController,
+                  decoration: InputDecoration(
+                    border: InputBorder.none, // Убираем стандартную рамку
+                    hintText: 'config name',
                     hintStyle: TextStyle(color: Colors.black), // Цвет подсказки
                     contentPadding: EdgeInsets.all(10), // Отступы внутри текстового поля
                   ),
