@@ -92,7 +92,12 @@ class _VpnScreenState extends State<VpnScreen> {
             children: [
               GestureDetector(
                   onTap: _toggleConnectionWireguard,
-                  child: Image.asset('assets/icons/lock.png', scale: 4)),
+                  child: !_isConnected
+                      ? Image.asset(
+                          'assets/icons/unlock.png',
+                          scale: 4,
+                        )
+                      : Image.asset('assets/icons/lock.png', scale: 4)),
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: _toggleConnectionWireguard,
