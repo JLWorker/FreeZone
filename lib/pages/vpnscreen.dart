@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:ikev_flutter/flutter_vpn.dart';
 import 'package:ikev_flutter/state.dart';
@@ -8,7 +9,6 @@ class VpnScreen extends StatefulWidget {
   @override
   _VpnScreenState createState() => _VpnScreenState();
 }
-
 class _VpnScreenState extends State<VpnScreen> {
   bool _isConnected = false;
   var state = FlutterVpnState.disconnected;
@@ -26,7 +26,6 @@ class _VpnScreenState extends State<VpnScreen> {
     if (state != FlutterVpnState.connected) {
       await FlutterVpn.disconnect();
     }
-
   }
 
   @override
