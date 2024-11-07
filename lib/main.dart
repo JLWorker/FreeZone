@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wireguard_flutter/wireguard_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -56,6 +57,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  bool _isVpnEnabled = false;
 
   void _incrementCounter() {
     setState(() {
@@ -66,6 +68,43 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+  }
+
+  Future<void> _toggleVpn() async {
+    final wireguard = WireGuardFlutter.instance;
+
+    // Инициализируем интерфейс
+    await wireguard.initialize(interfaceName: 'wg0');
+
+    const String conf = '''[Interface]
+    PrivateKey = eDIQ44DEmrXeGRJTFNpRcoqEmaQ8BTp4uNUobhcwwnI=
+    Address = 10.8.0.2/24
+    DNS = 1.1.1.1
+    
+    [Peer]
+    PublicKey = akB9R4mC96k1/L/WJhhW9DekqAIMdsz6H67U0wVpkiU=
+    PresharedKey = 6V5FL7NgTufJOwwqQmB6G8C4FKqTjbLaTa1WEeANUT4=
+    AllowedIPs = 0.0.0.0/0, ::/0
+    PersistentKeepalive = 0
+    Endpoint = 176.124.201.152:51820
+''';
+
+    const String address = '176.124.201.152:51821';
+
+    if (!_isVpnEnabled) {
+      await wireguard.startVpn(
+        serverAddress: address,
+        wgQuickConfig: conf,
+        providerBundleIdentifier: 'com.freezone.vpn',
+      );
+
+      _isVpnEnabled = true;
+
+    } else {
+      await wireguard.stopVpn();
+      _isVpnEnabled = false;
+    }
+
   }
 
   @override
@@ -116,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: _toggleVpn,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
