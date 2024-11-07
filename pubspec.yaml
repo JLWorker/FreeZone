@@ -64,6 +64,8 @@ flutter:
   assets:
     - assets/icons/Logo.png
     - assets/icons/change_icon_theme.png
+    - assets/icons/lock.png
+    - assets/icons/unlock.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

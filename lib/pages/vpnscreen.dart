@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ikev_flutter/flutter_vpn.dart';
+import 'package:ikev_flutter/state.dart';
+import 'package:wireguard_flutter/wireguard_flutter.dart';
+import 'package:free_zone/widgets/status_bar.dart';
 
 class VpnScreen extends StatefulWidget {
   @override
@@ -6,6 +10,7 @@ class VpnScreen extends StatefulWidget {
 }
 
 class _VpnScreenState extends State<VpnScreen> {
+  bool _isConnected = false;
   var state = FlutterVpnState.disconnected;
   CharonErrorState? charonState = CharonErrorState.NO_ERROR;
   void _toggleConnection() async {
@@ -21,6 +26,7 @@ class _VpnScreenState extends State<VpnScreen> {
     if (state != FlutterVpnState.connected) {
       await FlutterVpn.disconnect();
     }
+
   }
 
   @override
@@ -73,20 +79,32 @@ class _VpnScreenState extends State<VpnScreen> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            state == FlutterVpnState.connected ? Icons.vpn_lock : Icons.lock_open,
-            size: 100,
-            color: state != FlutterVpnState.connected ? Colors.green : Colors.red,
-          ),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: _toggleConnection,
-            child: Text(state == FlutterVpnState.connected ? 'Отключиться от VPN' : 'Подключиться к VPN'),
-          ),
-        ],
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              child: StatusBar(status: state.toString()),
+              color: Colors.grey,
+            ),
+            Spacer(),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ElevatedButton(
+                    onPressed: _toggleConnection,
+                    child: Image.asset('assets/icons/lock.png', scale: 4)
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: _toggleConnection,
+                  child: Text(state == FlutterVpnState.connected ? 'Отключиться от VPN' : 'Подключиться к VPN'),
+                ),
+              ],
+            ),
+            Spacer(),
+          ],
+        )
       ),
     );
   }
