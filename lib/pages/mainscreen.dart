@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:free_zone/widgets/config_editor.dart' as config_editor;
 import 'package:free_zone/pages/vpnscreen.dart' as vpnscreen;
+import 'package:free_zone/widgets/header.dart';
+import 'package:free_zone/themes/app-style.dart';
 
 class main_screen extends StatefulWidget {
   @override
@@ -25,7 +27,8 @@ class _MainScreenState extends State<main_screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('VPN App'),
+        backgroundColor: AppStyle.MainColor,
+        title: const Header(),
       ),
       body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(

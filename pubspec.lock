@@ -75,6 +75,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  ikev_flutter:
+    dependency: "direct main"
+    description:
+      name: ikev_flutter
+      sha256: f617c6269ac0c50dd51c09a4eb71b44414820dec47ef74c62d04f6e7d58c4b40
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   leak_tracker:
     dependency: transitive
     description:
@@ -139,6 +147,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.0"
+  plugin_platform_interface:
+    dependency: transitive
+    description:
+      name: plugin_platform_interface
+      sha256: "4820fbfdb9478b1ebae27888254d445073732dae3d6ea81f0b7e06d5dedc3f02"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.8"
   sky_engine:
     dependency: transitive
     description: flutter

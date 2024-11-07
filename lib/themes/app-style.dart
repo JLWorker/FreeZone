@@ -6,4 +6,5 @@ class AppStyle{
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );
+  static const Color MainColor = Color(0xF0F04532);
 }
