@@ -5,6 +5,7 @@ import 'package:free_zone/widgets/header.dart';
 import 'package:free_zone/themes/app-style.dart';
 import 'package:free_zone/widgets/footer_image.dart';
 import 'package:free_zone/pages/edit_page.dart' as edit_page;
+import 'package:free_zone/pages/add_new_client_page.dart' as add_new_client_page;
 
 import '../themes/app-style.dart';
 
@@ -25,7 +26,8 @@ class _MainScreenState extends State<Mainscreen> {
   final List<Widget> _screens = [
     vpnscreen.VpnScreen(),
     config_editor.ConfigEditorScreen(),
-    edit_page.EditPage()
+    edit_page.EditPage(),
+    add_new_client_page.AddNewClientPage()
   ];
 
   @override
@@ -42,6 +44,8 @@ class _MainScreenState extends State<Mainscreen> {
               icon: FooterImage('assets/icons/globe-earth.png'), label: ""),
           BottomNavigationBarItem(
               icon: FooterImage('assets/icons/add.png'), label: ""),
+          BottomNavigationBarItem(
+              icon: FooterImage('assets/icons/edit.png'), label: ""),
           BottomNavigationBarItem(
               icon: FooterImage('assets/icons/edit.png'), label: ""),
         ],
