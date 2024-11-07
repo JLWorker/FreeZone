@@ -80,7 +80,7 @@ class CodeEditorWidgetState extends State<CodeEditor> {
   Widget build(BuildContext context) {
 
     double screenHeight = MediaQuery.of(context).size.height;
-    double textFieldHeight = screenHeight * 0.6;
+    double textFieldHeight = screenHeight * 0.7;
 
     return Scaffold(
       body: _isLoading

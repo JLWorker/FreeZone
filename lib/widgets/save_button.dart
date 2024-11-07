@@ -16,15 +16,14 @@ class SaveButton extends StatelessWidget {
         child: Text(
             'save',
              style: TextStyle(
-               color: AppStyle.colorPalette["base"],
+               color: AppStyle.colorPalette["white"],
                fontSize: 20
              ),
         ),
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
-          AppStyle.colorPalette["white"]
+          AppStyle.colorPalette["base"]
         ),
-        minimumSize: MaterialStateProperty.all(Size(200, 50)), // Минимальные размеры кнопки
       ),
     );
   }

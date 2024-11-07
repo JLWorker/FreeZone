@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:free_zone/pages/editcreen.dart' as edit_page;
+import 'package:free_zone/pages/editscreen.dart' as edit_page;
 import 'package:free_zone/pages/vpnscreen.dart' as vpn_screen;
 import 'package:free_zone/widgets/header.dart';
 import 'package:free_zone/themes/app-style.dart';
 import 'package:free_zone/widgets/footer_image.dart';
-import 'package:free_zone/pages/edit_page.dart' as edit_page;
+
 
 import '../themes/app-style.dart';
 
@@ -25,15 +25,15 @@ class _MainScreenState extends State<Mainscreen> {
     });
   }
 
-  final List<Widget> _screens = [
-    vpn_screen.VpnScreen(),
-    edit_page.EditPage(),
-  ];
-
-
 
   @override
   Widget build(BuildContext context) {
+
+    final List<Widget> _screens = [
+      vpn_screen.VpnScreen(),
+      edit_page.EditPage(filePath: _current_filePath),
+    ];
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppStyle.colorPalette["base"],
@@ -51,7 +51,7 @@ class _MainScreenState extends State<Mainscreen> {
           ],
           showSelectedLabels: false,
           showUnselectedLabels: false,
-          backgroundColor: AppStyle.colorPalette["whiter"],
+          backgroundColor: AppStyle.colorPalette["light_gray"],
           currentIndex: _selectedIndex,  // Устанавливаем текущий индекс
           onTap: _onItemTapped,
         )
