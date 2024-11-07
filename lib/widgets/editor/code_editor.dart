@@ -3,17 +3,17 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CodeRedactor extends StatefulWidget {
+class CodeEditor extends StatefulWidget {
 
-  final String filePath; // Путь к файлу, передаваемый в виджет
+  final String filePath;
 
-  const CodeRedactor({Key? key, required this.filePath}) : super(key: key);
+  const CodeEditor({Key? key, required this.filePath}) : super(key: key);
 
   @override
   _CodeEditorWidgetState createState() => _CodeEditorWidgetState();
 }
 
-class _CodeEditorWidgetState extends State<CodeRedactor> {
+class _CodeEditorWidgetState extends State<CodeEditor> {
   TextEditingController _controller = TextEditingController();
   bool _isLoading = true;
 
@@ -24,8 +24,8 @@ class _CodeEditorWidgetState extends State<CodeRedactor> {
         setState(() {
         _controller.text = content;
         _isLoading = false;
-        });
-        } catch (e) {
+      });
+      } catch (e) {
           setState(() {
           _controller.text = 'Ошибка при загрузке файла: $e';
           _isLoading = false;

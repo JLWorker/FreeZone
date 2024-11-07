@@ -34,6 +34,8 @@ class _MainScreenState extends State<Mainscreen> {
     ConfigsScreen()
   ];
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +64,28 @@ class _MainScreenState extends State<Mainscreen> {
         backgroundColor: AppStyle.footer.color,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
+      ),
+        appBar: AppBar(
+        title: Text('My App'),
+    ),
+    // body: _screens[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: FooterImage('assets/icons/globe-earth.png'),
+          label: ""
+        ),
+        BottomNavigationBarItem(
+          icon: FooterImage('assets/icons/add.png'),
+          label: ""
+        ),
+        BottomNavigationBarItem(
+          icon: FooterImage('assets/icons/edit.png'),
+          label: ""
+        ),
+      ],
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        backgroundColor: AppStyle.footer.color,
       ),
     );
   }
