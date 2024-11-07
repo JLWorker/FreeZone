@@ -91,14 +91,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  ikev_flutter:
+  flutter_vpn:
     dependency: "direct main"
     description:
-      name: ikev_flutter
-      sha256: f617c6269ac0c50dd51c09a4eb71b44414820dec47ef74c62d04f6e7d58c4b40
+      name: flutter_vpn
+      sha256: "9f83b6ddc1cc22e85abe3c9b8a435ca31935ae81fb72b9b5543e3320f84ca021"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.2"
+    version: "0.13.0"
   leak_tracker:
     dependency: transitive
     description:

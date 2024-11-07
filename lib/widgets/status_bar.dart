@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class StatusBar extends StatefulWidget {
+class StatusBar extends StatelessWidget {
   final String status;
 
   const StatusBar({Key? key, required this.status}) : super(key: key);
@@ -11,7 +11,7 @@ class StatusBar extends StatefulWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text('status: ' + this.status),
+          Text('status: ${this.status}'),
         ],
       ),
     );

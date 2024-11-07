@@ -18,7 +18,7 @@ public final class GeneratedPluginRegistrant {
     try {
       flutterEngine.getPlugins().add(new io.xdea.flutter_vpn.FlutterVpnPlugin());
     } catch (Exception e) {
-      Log.e(TAG, "Error registering plugin ikev_flutter, io.xdea.flutter_vpn.FlutterVpnPlugin", e);
+      Log.e(TAG, "Error registering plugin flutter_vpn, io.xdea.flutter_vpn.FlutterVpnPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.pathprovider.PathProviderPlugin());
