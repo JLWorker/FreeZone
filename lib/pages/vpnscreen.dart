@@ -22,6 +22,7 @@ class _VpnScreenState extends State<VpnScreen> {
           username: '4357480@bk_64076',
           password: 'kLbiouni3Na5I4yd'
       );
+      print(state);
     }
     if (state != FlutterVpnState.connected) {
       await FlutterVpn.disconnect();
@@ -90,8 +91,8 @@ class _VpnScreenState extends State<VpnScreen> {
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                ElevatedButton(
-                    onPressed: _toggleConnection,
+                GestureDetector(
+                    onTap: _toggleConnection,
                     child: Image.asset('assets/icons/lock.png', scale: 4)
                 ),
                 const SizedBox(height: 10),

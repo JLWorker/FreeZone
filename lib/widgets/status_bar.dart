@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class StatusBar extends StatelessWidget {
+class StatusBar extends StatefulWidget {
   final String status;
 
   const StatusBar({Key? key, required this.status}) : super(key: key);
