@@ -4,6 +4,7 @@ import 'package:free_zone/pages/vpnscreen.dart' as vpnscreen;
 import 'package:free_zone/widgets/header.dart';
 import 'package:free_zone/themes/app-style.dart';
 import 'package:free_zone/widgets/footer_image.dart';
+import 'package:free_zone/pages/edit_page.dart' as edit_page;
 
 import '../themes/app-style.dart';
 
@@ -24,6 +25,7 @@ class _MainScreenState extends State<Mainscreen> {
   final List<Widget> _screens = [
     vpnscreen.VpnScreen(),
     config_editor.ConfigEditorScreen(),
+    edit_page.EditPage()
   ];
 
   @override
@@ -46,6 +48,8 @@ class _MainScreenState extends State<Mainscreen> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         backgroundColor: AppStyle.footer.color,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }
