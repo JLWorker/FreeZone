@@ -11,7 +11,7 @@ class StatusBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text('status: ' + this.status),
+          Text('status: ${this.status}'),
         ],
       ),
     );
