@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:free_zone/models/VpnConfigFile.dart';
 import 'package:free_zone/service/ConfigFileStorageService.dart';
-import 'package:free_zone/widgets/connection_widget.dart' as connection_widget;
+import 'package:free_zone/widgets/connection_widget.dart';
 
-import '../themes/app-style.dart';
 import '../widgets/connection_widget.dart';
 
 class ConfigsScreen extends StatefulWidget {
+
+  final Function(String) onFilePathChanged;
+
+  ConfigsScreen({required this.onFilePathChanged});
+
   @override
   _ConfigsScreenState createState() => _ConfigsScreenState();
 }
@@ -52,13 +56,13 @@ class _ConfigsScreenState extends State<ConfigsScreen> {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return ConnectionWidget(configFile: file);
+                    return ConnectionWidget(configFile: file, onFilePathChanged: widget.onFilePathChanged);
                   },
                 );
               },
               style: ElevatedButton.styleFrom(
-                  backgroundColor:  AppStyle.colorPalette["white"],
-                  foregroundColor: AppStyle.colorPalette["base"],
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.red,
               ),
               child: Text(file.fileName.substring(0, file.fileName.length - 4)),
             );

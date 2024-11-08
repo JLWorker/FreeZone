@@ -4,9 +4,11 @@ import 'package:free_zone/service/VpnConfigRunnerService.dart';
 
 class ConnectionWidget extends StatelessWidget {
 
+  final Function(String) onFilePathChanged;
+
   VpnConfigFile configFile;
 
-  ConnectionWidget({required this.configFile});
+  ConnectionWidget({required this.configFile, required this.onFilePathChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +19,9 @@ class ConnectionWidget extends StatelessWidget {
         TextButton(
           onPressed: () {
             VpnConfigRunnerService.runVpnConfig(configFile);
-            Navigator.of(context).pop(); // Close the dialog
-
+            Navigator.of(context).pop();
+            String newPath = "/storage/emulated/0/Download/freezone/";
+            onFilePathChanged(newPath+configFile.fileName);
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('VPN connected from config!')),
             );

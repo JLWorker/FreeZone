@@ -9,6 +9,7 @@ import 'package:free_zone/models/configs/WireguardVpnConfig.dart';
 import 'package:free_zone/models/vpn_config.dart';
 import 'package:free_zone/service/ConfigFileStorageService.dart';
 import 'package:free_zone/themes/app-style.dart';
+import 'package:free_zone/widgets/save_button.dart';
 import 'package:wireguard_flutter/wireguard_flutter.dart';
 import 'package:free_zone/widgets/connection_widget.dart';
 
@@ -244,10 +245,7 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
                 ),
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _saveData,
-                child: Text('Create configuration file'),
-              ),
+              SaveButton(onPressed: _saveData, colorSwitch: 'switch'),
             ],
           ),
         ),

@@ -8,6 +8,10 @@ import 'package:free_zone/pages/configs_screen.dart' as config_screen;
 
 class VpnScreen extends StatefulWidget {
 
+  final Function(String) onFilePathChanged;
+
+  VpnScreen({required this.onFilePathChanged});
+
   @override
   _VpnScreenState createState() => _VpnScreenState();
 }
@@ -112,7 +116,7 @@ class _VpnScreenState extends State<VpnScreen> {
                 onPressed: (){
                   Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => config_screen.ConfigsScreen()),
+                  MaterialPageRoute(builder: (context) => config_screen.ConfigsScreen(onFilePathChanged: widget.onFilePathChanged,)),
                   );
                 },
                 child: Text("Выбрать конфигурацию", style: TextStyle(color: AppStyle.colorPalette["white"])),

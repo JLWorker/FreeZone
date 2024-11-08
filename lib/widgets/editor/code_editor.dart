@@ -7,7 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class CodeEditor extends StatefulWidget {
-  final String filePath; // Путь к файлу, который нужно открыть
+  final String filePath;
 
   const CodeEditor({Key? key, required this.filePath}) : super(key: key);
 
@@ -51,22 +51,21 @@ class CodeEditorWidgetState extends State<CodeEditor> {
     }
   }
 
-  late TextEditingController _controller; // Контроллер для TextField
+  late TextEditingController _controller;
   bool _isLoading = true;
 
   CodeEditorWidgetState(this.filePath);
 
 
 
-  // Загрузить содержимое файла
   Future<void> loadFileContent() async {
     try {
 
       final file = File(widget.filePath);
-      final content = await file.readAsString(); // Чтение содержимого файла
+      final content = await file.readAsString();
       setState(() {
-        _controller.text = content; // Устанавливаем текст в контроллер
-        _isLoading = false; // Прекращаем индикатор загрузки
+        _controller.text = content;
+        _isLoading = false;
       });
     } catch (e) {
       setState(() {
@@ -84,14 +83,14 @@ class CodeEditorWidgetState extends State<CodeEditor> {
 
     return Scaffold(
       body: _isLoading
-          ? Center(child: CircularProgressIndicator()) // Индикатор загрузки
+          ? Center(child: CircularProgressIndicator())
           : Padding(
         padding: const EdgeInsets.all(16.0),
         child: Container(
           height: textFieldHeight,
           child: TextField(
-            controller: _controller,  // Контроллер для управления текстом
-            maxLines: null,  // Многострочное поле
+            controller: _controller,
+            maxLines: null,
             style: TextStyle(
                 fontFamily: 'monospace',
                 fontSize: 14,
@@ -100,8 +99,8 @@ class CodeEditorWidgetState extends State<CodeEditor> {
 
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              filled: true, // Включаем заполнение фона
-              fillColor: AppStyle.colorPalette["editor_background"], // Цвет фона (светло-серый)
+              filled: true,
+              fillColor: AppStyle.colorPalette["editor_background"],
             ),
           ),
         ),

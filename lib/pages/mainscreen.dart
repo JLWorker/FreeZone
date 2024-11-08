@@ -19,9 +19,6 @@ class Mainscreen extends StatefulWidget {
 class _MainScreenState extends State<Mainscreen> {
   int _selectedIndex = 0;
 
-  // Переменная, которую нужно передать
-  String _current_filePath = "/storage/emulated/0/Download/java_error_in_idea_37395.log";
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -31,14 +28,23 @@ class _MainScreenState extends State<Mainscreen> {
   @override
   Widget build(BuildContext context) {
 
+    String _current_filePath = "/storage/emulated/0/Download/freezone/PC.conf";
+
+    void _updateFilePath(String newPath) {
+      setState(() {
+        _current_filePath = newPath;
+      });
+    }
+
     final List<Widget> _screens = [
-      vpn_screen.VpnScreen(),
+      vpn_screen.VpnScreen(onFilePathChanged: _updateFilePath),
       add_new_client_page.AddNewClientPage(),
       edit_page.EditPage(filePath: _current_filePath),
-      config_screen.ConfigsScreen()
+      config_screen.ConfigsScreen(onFilePathChanged: _updateFilePath)
     ];
 
     return Scaffold(
+
         appBar: AppBar(
           backgroundColor: AppStyle.colorPalette["base"],
           title: const Header(),

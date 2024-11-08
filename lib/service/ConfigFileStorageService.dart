@@ -61,7 +61,7 @@ class ConfigFileStorageService {
     if (Platform.isAndroid) {
       return Directory('/storage/emulated/0/Download' + '/${AppConstants.APP_STORAGE_DIRECTORY_NAME}');
     } else {
-      return null; // Для других платформ
+      return null;
     }
   }
 

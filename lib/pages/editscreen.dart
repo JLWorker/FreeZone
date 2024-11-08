@@ -5,7 +5,7 @@ import 'package:free_zone/widgets/save_button.dart';
 
 class EditPage extends StatefulWidget {
 
-  final String filePath; // Путь к файлу
+  final String filePath;
 
   const EditPage({Key? key, required this.filePath}) : super(key: key);
 
@@ -18,14 +18,12 @@ class _EditPageState extends State<EditPage> {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<CodeEditorWidgetState> _editorKey = GlobalKey();
-    // Определяем кнопку с вызовом метода saveFile только после инициализации
     final SaveButton saveButton = SaveButton(
       onPressed: () {
-        // Проверяем, и если состояние доступно, вызываем saveFile
         if (_editorKey.currentState != null) {
           _editorKey.currentState!.saveFile();
         }
-      }
+      }, colorSwitch: 'none'
     );
 
     final List<Widget> _widgetsOnEditPage = [

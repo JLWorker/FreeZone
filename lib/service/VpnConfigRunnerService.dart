@@ -11,7 +11,6 @@ class VpnConfigRunnerService {
 
     final wireguard = WireGuardFlutter.instance;
 
-    // Инициализируем интерфейс
     await wireguard.initialize(interfaceName: 'wg0');
 
     await wireguard.startVpn(
