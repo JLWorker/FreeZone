@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:free_zone/pages/editscreen.dart' as edit_page;
+import 'package:free_zone/pages/ConfigsScreen.dart';
+import 'package:free_zone/pages/editscreen.dart';
 import 'package:free_zone/pages/vpnscreen.dart' as vpn_screen;
 import 'package:free_zone/widgets/header.dart';
 import 'package:free_zone/themes/app-style.dart';
 import 'package:free_zone/widgets/footer_image.dart';
-
+import 'package:free_zone/pages/editscreen.dart' as edit_page;
+import 'package:free_zone/pages/add_new_client_page.dart' as add_new_client_page;
+import 'package:free_zone/widgets/connection_widget.dart' as connection_widget;
 
 import '../themes/app-style.dart';
+import 'editscreen.dart';
 
 class Mainscreen extends StatefulWidget {
   @override
@@ -25,13 +29,15 @@ class _MainScreenState extends State<Mainscreen> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
 
     final List<Widget> _screens = [
       vpn_screen.VpnScreen(),
+      add_new_client_page.AddNewClientPage(),
       edit_page.EditPage(filePath: _current_filePath),
+      connection_widget.ConnectionWidget(),
+      ConfigsScreen()
     ];
 
     return Scaffold(

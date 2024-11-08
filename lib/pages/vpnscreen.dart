@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vpn/flutter_vpn.dart';
 import 'package:flutter_vpn/state.dart';
+import 'package:free_zone/themes/app-style.dart';
 import 'package:wireguard_flutter/wireguard_flutter.dart';
 import 'package:free_zone/widgets/status_bar.dart';
 
@@ -106,10 +107,11 @@ class _VpnScreenState extends State<VpnScreen> {
                       : Image.asset('assets/icons/lock.png', scale: 4)),
               const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: _toggleConnectionWireguard,
-                child: Text(state == FlutterVpnState.connected
-                    ? 'Отключиться от VPN'
-                    : 'Подключиться к VPN'),
+                onPressed: ,
+                child: Text("Выбрать конфигурацию", style: TextStyle(color: AppStyle.colorPalette["white"])),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppStyle.colorPalette["base"]
+                ),
               ),
             ],
           ),

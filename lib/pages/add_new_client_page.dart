@@ -10,7 +10,7 @@ import 'package:free_zone/models/vpn_config.dart';
 import 'package:free_zone/service/ConfigFileStorageService.dart';
 import 'package:free_zone/themes/app-style.dart';
 import 'package:wireguard_flutter/wireguard_flutter.dart';
-import 'package:free_zone/widgets/ConnectionWidget.dart';
+import 'package:free_zone/widgets/connection_widget.dart';
 
 class AddNewClientPage extends StatefulWidget {
   @override
@@ -127,7 +127,7 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppStyle.MainColor,
+      backgroundColor: AppStyle.colorPalette["base"],
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Form(

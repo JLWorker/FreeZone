@@ -20,11 +20,9 @@ class SaveButton extends StatelessWidget {
                fontSize: 20
              ),
         ),
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(
-          AppStyle.colorPalette["base"]
+      style: ElevatedButton.styleFrom(
+          backgroundColor:  AppStyle.colorPalette["base"]
         ),
-      ),
     );
   }
 
