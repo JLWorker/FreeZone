@@ -1,16 +1,38 @@
-# free_zone
+# FreeZone
 
-VPN proxy-client
+VPN клиент для подключения с использованием различных протоколов VPN:
+- WireGuard
+- IKEv2
 
-## Getting Started
+Основные возможности:
 
-This project is a starting point for a Flutter application.
+- Наличие редактора для клиентских конфигураций WireGuard/IKEv2
+- Хранение созданных/загруженных конфигураций в памяти устройства
+- Запуск сохраненных конфигураций VPN соединений
 
-A few resources to get you started if this is your first Flutter project:
+## Добавление новой конфигурации в клиенте
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Нажать на кнопку с иконкой плюса
+2. Выбрать типа протокола (Wireguard, IKEv2)
+3. Задать путь к файлу с конфигурацией (в случае Wireguard)
+4. Задать адрес удаленного VPN-сервера, к которому подключаемся
+5. Задать название сохраняемого файла конфигурации
+6. Нажать на кнопку `Create configuration file` - создастся файл с полной конфигурации под выбранный тип VPN протокола
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![VPN](./screens/add-new-config.png)
+
+## Просмотр сохраненных конфигов
+
+1. Нажать на кнопку с иконкой планеты
+2. Откроется список сохраненных конфигурационных файлов для различных протоколов 
+
+![Configs](./screens/configs-screen.png)
+
+## Запуск выбранного конфига
+
+1. Нажать на конфигурацию из списка, представленного в предыдущем разделе
+2. В появившемся окне нажать кнопку 'Yes' для создания VPN-соединения
+3. В случае появления предложения о создании VPN-подключения приложением FreeZone согласиться с предложением
+
+![Run](./screens/connect-with-vpn.png)
+
