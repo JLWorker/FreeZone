@@ -35,7 +35,6 @@ class _MainScreenState extends State<Mainscreen> {
       vpn_screen.VpnScreen(),
       add_new_client_page.AddNewClientPage(),
       edit_page.EditPage(filePath: _current_filePath),
-      connection_widget.ConnectionWidget(),
       config_screen.ConfigsScreen()
     ];
 

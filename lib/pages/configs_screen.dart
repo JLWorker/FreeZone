@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:free_zone/models/VpnConfigFile.dart';
 import 'package:free_zone/service/ConfigFileStorageService.dart';
-import 'package:free_zone/widgets/ConnectionWidget.dart';
+import 'package:free_zone/widgets/connection_widget.dart' as connection_widget;
+
+import '../themes/app-style.dart';
+import '../widgets/connection_widget.dart';
 
 class ConfigsScreen extends StatefulWidget {
   @override
@@ -54,13 +57,16 @@ class _ConfigsScreenState extends State<ConfigsScreen> {
                 );
               },
               style: ElevatedButton.styleFrom(
-                  backgroundColor:  AppStyle.colorPalette["white"]
+                  backgroundColor:  AppStyle.colorPalette["white"],
+                  foregroundColor: AppStyle.colorPalette["base"],
               ),
-              child: Text(label, style: TextStyle(color: AppStyle.colorPalette["base"])),
+              child: Text(file.fileName.substring(0, file.fileName.length - 4)),
             );
           }).toList(),
         ),
       ),
     );
   }
+
+
 }
