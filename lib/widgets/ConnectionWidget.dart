@@ -11,7 +11,7 @@ class ConnectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Connect with vpn config ${configFile.fileName}?'),
+      title: Text('Connect with vpn config ${configFile.fileName.substring(0, configFile.fileName.length - 4)}?'),
       content: Text('Do you want to connect with this VPN configuration?'),
       actions: [
         TextButton(

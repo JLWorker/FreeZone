@@ -57,7 +57,7 @@ class _ConfigsScreenState extends State<ConfigsScreen> {
                 backgroundColor: Colors.white,
                 foregroundColor: Colors.red,
               ),
-              child: Text(file.fileName),
+              child: Text(file.fileName.substring(0, file.fileName.length - 4)),
             );
           }).toList(),
         ),
