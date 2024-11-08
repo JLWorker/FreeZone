@@ -67,11 +67,6 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
 
         if (configName != null && !configName.isEmpty) {
           ConfigFileStorageService.saveConfigToStorage(vpnConfig, configName!);
-
-          // Сообщение об успешном сохранении
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('VPN config saved: ' + vpnConfig)),
-          );
         }
 
 
@@ -114,9 +109,6 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
   Future<void> _showFilePath() async {
     if (_filePath != null) {
       String fileContents = await readFile(_filePath!);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Содержимое файла: $fileContents')),
-      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Файл не выбран')),
@@ -135,26 +127,26 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
           child: Column(
             children: [
               Align(
-                alignment: Alignment.centerLeft, // Выровнять текст по левому краю
+                alignment: Alignment.centerLeft,
                 child: Text(
-                  'Add new client',
+                  'Add new config',
                   style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ),
-              SizedBox(height: 8.0), // Отступ между лейблом и текстовым полем
+              SizedBox(height: 8.0),
               Align(
-                alignment: Alignment.centerLeft, // Выровнять текст по левому краю
+                alignment: Alignment.centerLeft,
                 child: Text(
                   'type',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ),
-              SizedBox(height: 8.0), // Отступ между лейблом и текстовым полем
+              SizedBox(height: 8.0),
               Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.white, // Цвет фона
-                  borderRadius: BorderRadius.circular(8.0), // Скругление углов
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
                 child:
                   DropdownButton<String>(
@@ -162,7 +154,7 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
                     value: _selectedItem,
                     onChanged: (String? newValue) {
                       setState(() {
-                        _selectedItem = newValue; // Обновляем выбранный элемент
+                        _selectedItem = newValue;
                       });
                     },
                     items: _vpnProtocols.map<DropdownMenuItem<String>>((String value) {
@@ -173,83 +165,83 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
                     }).toList(),
                   )
               ),
-              SizedBox(height: 8.0), // Отступ между лейблом и текстовым полем
+              SizedBox(height: 8.0),
               Align(
-                alignment: Alignment.centerLeft, // Выровнять текст по левому краю
+                alignment: Alignment.centerLeft,
                 child: Text(
                   'path:',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ),
-              SizedBox(height: 8.0), // Отступ между лейблом и текстовым полем
+              SizedBox(height: 8.0),
               TextField(
-                readOnly: true, // Поле только для чтения
+                readOnly: true,
                 decoration: InputDecoration(
                   labelText: 'Путь к файлу',
                   border: OutlineInputBorder(),
-                  filled: true, // Включаем заливку
-                  fillColor: Colors.white, // Белый фон
+                  filled: true,
+                  fillColor: Colors.white,
                   suffixIcon: IconButton(
                     icon: Icon(Icons.folder),
-                    onPressed: _pickFile, // Вызов метода выбора файла
+                    onPressed: _pickFile,
                   ),
                 ),
-                controller: TextEditingController(text: _filePath), // Отображение пути
+                controller: TextEditingController(text: _filePath),
               ),
               Align(
-                alignment: Alignment.centerLeft, // Выровнять текст по левому краю
+                alignment: Alignment.centerLeft,
                 child: Text(
                   'server address:',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ),
-              SizedBox(height: 8.0), // Отступ между лейблом и текстовым полем
+              SizedBox(height: 8.0),
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white, // Белый фон
-                  border: Border.all(color: Colors.black), // Черная рамка
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black),
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: TextField(
                   controller: _urlController,
                   decoration: InputDecoration(
-                    border: InputBorder.none, // Убираем стандартную рамку
+                    border: InputBorder.none,
                     hintText: 'https://example.com',
-                    hintStyle: TextStyle(color: Colors.black), // Цвет подсказки
-                    contentPadding: EdgeInsets.all(10), // Отступы внутри текстового поля
+                    hintStyle: TextStyle(color: Colors.black),
+                    contentPadding: EdgeInsets.all(10),
                   ),
-                  style: TextStyle(color: Colors.black), // Черный текст
+                  style: TextStyle(color: Colors.black),
                 ),
               ),
               Align(
-                alignment: Alignment.centerLeft, // Выровнять текст по левому краю
+                alignment: Alignment.centerLeft,
                 child: Text(
                   'Config name:',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ),
-              SizedBox(height: 8.0), // Отступ между лейблом и текстовым полем
+              SizedBox(height: 8.0),
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white, // Белый фон
-                  border: Border.all(color: Colors.black), // Черная рамка
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black),
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: TextField(
                   controller: _configNameController,
                   decoration: InputDecoration(
-                    border: InputBorder.none, // Убираем стандартную рамку
+                    border: InputBorder.none,
                     hintText: 'config name',
-                    hintStyle: TextStyle(color: Colors.black), // Цвет подсказки
-                    contentPadding: EdgeInsets.all(10), // Отступы внутри текстового поля
+                    hintStyle: TextStyle(color: Colors.black),
+                    contentPadding: EdgeInsets.all(10),
                   ),
-                  style: TextStyle(color: Colors.black), // Черный текст
+                  style: TextStyle(color: Colors.black),
                 ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _saveData,
-                child: Text('Execute configuration file'),
+                child: Text('Create configuration file'),
               ),
             ],
           ),
