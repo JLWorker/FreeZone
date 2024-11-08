@@ -28,7 +28,7 @@ class _MainScreenState extends State<Mainscreen> {
   @override
   Widget build(BuildContext context) {
 
-    String _current_filePath = "/storage/emulated/0/Download/freezone/PC.conf";
+    String _current_filePath;
 
     void _updateFilePath(String newPath) {
       setState(() {
