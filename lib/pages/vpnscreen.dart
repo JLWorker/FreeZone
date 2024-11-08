@@ -4,8 +4,10 @@ import 'package:flutter_vpn/state.dart';
 import 'package:free_zone/themes/app-style.dart';
 import 'package:wireguard_flutter/wireguard_flutter.dart';
 import 'package:free_zone/widgets/status_bar.dart';
+import 'package:free_zone/pages/configs_screen.dart' as config_screen;
 
 class VpnScreen extends StatefulWidget {
+
   @override
   _VpnScreenState createState() => _VpnScreenState();
 }
@@ -107,7 +109,12 @@ class _VpnScreenState extends State<VpnScreen> {
                       : Image.asset('assets/icons/lock.png', scale: 4)),
               const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: ,
+                onPressed: (){
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => config_screen.ConfigsScreen()),
+                  );
+                },
                 child: Text("Выбрать конфигурацию", style: TextStyle(color: AppStyle.colorPalette["white"])),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppStyle.colorPalette["base"]

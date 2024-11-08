@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:free_zone/service/ConfigFileStorageService.dart';
+import 'package:free_zone/themes/app-style.dart';
 
 class ConfigsScreen extends StatefulWidget {
   @override
@@ -44,10 +45,9 @@ class _ConfigsScreenState extends State<ConfigsScreen> {
                 print('Нажата кнопка: $label');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white, // Белый фон кнопки
-                foregroundColor: Colors.red, // Красный текст кнопки
+                  backgroundColor:  AppStyle.colorPalette["white"]
               ),
-              child: Text(label),
+              child: Text(label, style: TextStyle(color: AppStyle.colorPalette["base"])),
             );
           }).toList(),
         ),
