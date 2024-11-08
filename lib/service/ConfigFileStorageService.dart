@@ -10,11 +10,8 @@ class ConfigFileStorageService {
 
     await requestStoragePermission();
 
-    // Получаем папку freeZone
     Directory freeZoneDir = await getOrCreateConfigDirectory();
-    // Указываем путь к файлу
     File file = File('${freeZoneDir.path}/' + configName + '.txt');
-    // Записываем содержимое в файл
     await file.writeAsString(configContent, mode: FileMode.writeOnly);
   }
 
@@ -26,15 +23,12 @@ class ConfigFileStorageService {
   }
 
   static Future<List<VpnConfigFile>> getConfigsFromStorage() async {
-    // Получаем папку с конфигами
     Directory freeZoneDir = await getOrCreateConfigDirectory();
 
-    // Получаем список файлов в директории
     List<FileSystemEntity> files = freeZoneDir.listSync();
     List<String> contentsList = [];
     List<VpnConfigFile> configFiles = [];
 
-    // Читаем содержимое каждого файла
     for (var file in files) {
       String fileName = path.basename(file.path);
       if (file is File) {
@@ -48,18 +42,7 @@ class ConfigFileStorageService {
   }
 
   static Future<Directory> getOrCreateConfigDirectory() async {
-    /*Directory appDocDir = await getApplicationDocumentsDirectory();
-    Directory freeZoneDir = Directory('${appDocDir.path}/${AppConstants.APP_STORAGE_DIRECTORY_NAME}');
-
-    if (!await freeZoneDir.exists()) {
-      await freeZoneDir.create();
-    }
-
-    return freeZoneDir;
-    
-     */
-    
-    return Directory('/storage/emulated/0/Download');
+    return (await getDownloadsDirectory())!;
   }
 
   static Future<Directory?> getDownloadsDirectory() async {

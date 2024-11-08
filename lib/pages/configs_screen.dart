@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:free_zone/models/VpnConfigFile.dart';
 import 'package:free_zone/service/ConfigFileStorageService.dart';
-import 'package:free_zone/themes/app-style.dart';
+import 'package:free_zone/widgets/ConnectionWidget.dart';
 
 class ConfigsScreen extends StatefulWidget {
   @override
@@ -9,6 +10,7 @@ class ConfigsScreen extends StatefulWidget {
 
 class _ConfigsScreenState extends State<ConfigsScreen> {
   List<String> configNames = [];
+  List<VpnConfigFile> configFiles = [];
 
   @override
   void initState() {
@@ -24,7 +26,8 @@ class _ConfigsScreenState extends State<ConfigsScreen> {
   }
 
   Future<List<String>> getConfigs() async {
-    return (await ConfigFileStorageService.getConfigsFromStorage()).map((file) {
+    configFiles = await ConfigFileStorageService.getConfigsFromStorage();
+    return (configFiles).map((file) {
       return file.fileName;
     }).toList();
   }
@@ -36,13 +39,19 @@ class _ConfigsScreenState extends State<ConfigsScreen> {
         title: Text('Configs'),
       ),
       body: Container(
-        padding: EdgeInsets.all(16.0), // Добавляем отступы
+        padding: EdgeInsets.all(16.0),
+        color: Colors.red,
         child: Column(
-          children: configNames.map((label) {
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: configFiles.map((file) {
             return ElevatedButton(
               onPressed: () {
-                // Обработка нажатия на кнопку
-                print('Нажата кнопка: $label');
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return ConnectionWidget(configFile: file);
+                  },
+                );
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor:  AppStyle.colorPalette["white"]

@@ -1,22 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:free_zone/models/VpnConfigFile.dart';
+import 'package:free_zone/service/VpnConfigRunnerService.dart';
 
 class ConnectionWidget extends StatelessWidget {
+
+  VpnConfigFile configFile;
+
+  ConnectionWidget({required this.configFile});
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Connect with vpn config #1?'),
+      title: Text('Connect with vpn config ${configFile.fileName.substring(0, configFile.fileName.length - 4)}?'),
       content: Text('Do you want to connect with this VPN configuration?'),
       actions: [
         TextButton(
           onPressed: () {
-            // Handle "Yes" button press
+            VpnConfigRunnerService.runVpnConfig(configFile);
             Navigator.of(context).pop(); // Close the dialog
+
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('VPN connected from config!')),
+            );
           },
           child: Text('Yes'),
         ),
         TextButton(
           onPressed: () {
-            // Handle "No" button press
             Navigator.of(context).pop(); // Close the dialog
           },
           child: Text('No'),
