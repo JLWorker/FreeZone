@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:free_zone/constants/AppConstants.dart';
 import 'package:path/path.dart' as path;
 
 import 'package:free_zone/models/VpnConfigFile.dart';
@@ -42,12 +43,23 @@ class ConfigFileStorageService {
   }
 
   static Future<Directory> getOrCreateConfigDirectory() async {
-    return (await getDownloadsDirectory())!;
+
+    Directory? appDirectory = await getAppDirectory();
+
+    if (appDirectory == null) {
+      throw UnimplementedError();
+    } else {
+      if (!appDirectory!.existsSync()) {
+        await appDirectory.create(recursive: true);
+      }
+
+      return appDirectory!;
+    }
   }
 
-  static Future<Directory?> getDownloadsDirectory() async {
+  static Future<Directory?> getAppDirectory() async {
     if (Platform.isAndroid) {
-      return Directory('/storage/emulated/0/Download');
+      return Directory('/storage/emulated/0/Download' + '/${AppConstants.APP_STORAGE_DIRECTORY_NAME}');
     } else {
       return null; // Для других платформ
     }

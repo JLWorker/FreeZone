@@ -67,6 +67,11 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
 
         if (configName != null && !configName.isEmpty) {
           ConfigFileStorageService.saveConfigToStorage(vpnConfig, configName!);
+
+          // Сообщение об успешном сохранении
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('VPN config saved: ' + vpnConfig)),
+          );
         }
 
 
