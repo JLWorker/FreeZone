@@ -30,7 +30,6 @@ class _MainScreenState extends State<Mainscreen> {
     config_editor.ConfigEditorScreen(),
     edit_page.EditPage(),
     add_new_client_page.AddNewClientPage(),
-    connection_widget.ConnectionWidget(),
     ConfigsScreen()
   ];
 
@@ -52,8 +51,6 @@ class _MainScreenState extends State<Mainscreen> {
               icon: FooterImage('assets/icons/edit.png'), label: ""),
           BottomNavigationBarItem(
               icon: FooterImage('assets/icons/add.png'), label: ""),
-          BottomNavigationBarItem(
-              icon: FooterImage('assets/icons/globe-earth.png'), label: ""),
           BottomNavigationBarItem(
               icon: FooterImage('assets/icons/globe-earth.png'), label: ""),
         ],
